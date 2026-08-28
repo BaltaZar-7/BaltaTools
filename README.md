@@ -10,6 +10,7 @@ Slightly better than regular hatchet in struggles and breakdown.
 Main benefit that it is lighter than the original hatchet.  
 Can opening, harvest saplings, struggle and carcass harvesting. (animations work too!)  
 Can be used as tool in blueprints where vanilla hatchet is accepted.  
+Millable.  
 Can be only found in the Trader pool above 400 trust.  
 <img width="709" height="845" alt="BaltaToolsHatchet" src="https://github.com/user-attachments/assets/e6b1c763-a0e8-490f-bdb4-041a5d9adba7" />
 ## Splitting Axe  
@@ -18,6 +19,7 @@ Can harvest saplings.
 Cannot use in struggles nor carcass harvesting. Mainly because of the animations (model too big), but it is also balanced this way imo. May change on feedback.  
 Cannot use in crafting blueprints.  
 Special item, can be only found in Mystery Lake.  
+Millable.  
 <img width="772" height="847" alt="BaltaToolsAxe" src="https://github.com/user-attachments/assets/8b4c9e88-94d0-4823-8e6d-d83b1f6b8363" />
 ## Improvised Prybar  
 A forged variant of the prybar. Slightly heavier, same functionality (except breakdown, may add it later).  
