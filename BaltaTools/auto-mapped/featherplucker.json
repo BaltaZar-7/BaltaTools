@@ -1,0 +1,35 @@
+{
+  "ModGenericComponent": {
+    "DisplayNameLocalizationId": "GAMEPLAY_FeatherPlucker",
+    "DescriptionLocalizatonId": "GAMEPLAY_FeatherPluckerDescription",
+    "InventoryActionLocalizationId": "",
+    "WeightKG": 0.1,
+    "DaysToDecay": 0,
+    "MaxHP": 100.0,
+    "InitialCondition": "Perfect",
+    "InventoryCategory": "Tool",
+    "PickUpAudio": "Play_SndInvGenericSmall",
+    "PutBackAudio": "Play_SndInvGenericSmall",
+    "StowAudio": "Play_InventoryStow",
+    "WornOutAudio": "Play_SndInvMetalSmallBreak1",
+    "InspectOnPickup": true,
+    "InspectDistance": 0.8,
+    "InspectAngles": [
+      -45.0,
+      52.0,
+      -45.0
+    ],
+    "InspectOffset": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "InspectScale": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "NormalModel": "",
+    "InspectModel": ""
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "ModGenericComponent": {
+    "DisplayNameLocalizationId": "GAMEPLAY_ImprovisedRifleCleaningKit",
+    "DescriptionLocalizatonId": "GAMEPLAY_ImprovisedRifleCleaningKitDescription",
+    "InventoryActionLocalizationId": "",
+    "WeightKG": 0.2,
+    "DaysToDecay": 0,
+    "MaxHP": 100.0,
+    "InitialCondition": "Perfect",
+    "InventoryCategory": "Tool",
+    "PickUpAudio": "Play_SndInvSewingKit",
+    "PutBackAudio": "Play_SndInvSewingKit",
+    "StowAudio": "Play_SndInvClothLeatherStow",
+    "WornOutAudio": "Play_SndInvSewingKit",
+    "InspectOnPickup": true,
+    "InspectDistance": 0.5,
+    "InspectAngles": [
+      -45.0,
+      -20.0,
+      0.0
+    ],
+    "InspectOffset": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "InspectScale": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "NormalModel": "",
+    "InspectModel": ""
+  }
+}

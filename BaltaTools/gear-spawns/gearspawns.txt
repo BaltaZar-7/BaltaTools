@@ -1,0 +1,5 @@
+scene=LakeRegion
+item=GEAR_SplittingAxe p=377.5891,17.7783,1286.436 r=300.4878,0.0012,50.3218 c=100
+scene=MountainTownRegion
+item=GEAR_FeatherPlucker p=963.2855,305.2481,1235.093 r=0,194.8872,0 c=100
+

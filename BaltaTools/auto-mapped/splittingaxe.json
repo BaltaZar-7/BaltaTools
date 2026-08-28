@@ -1,0 +1,95 @@
+{
+  "ModToolComponent": {
+    "DisplayNameLocalizationId": "GAMEPLAY_SplittingAxe",
+    "DescriptionLocalizatonId": "GAMEPLAY_SplittingAxeDescription",
+    "InventoryActionLocalizationId": "",
+    "WeightKG": 5.0,
+    "DaysToDecay": 0,
+    "MaxHP": 100.0,
+    "InitialCondition": "Medium",
+    "InventoryCategory": "Tool",
+    "PickUpAudio": "Play_SndInvAxe",
+    "PutBackAudio": "Play_SndInvAxe",
+    "StowAudio": "Play_InventoryStow",
+    "WornOutAudio": "Play_SndInvAxeBreak",
+    "InspectOnPickup": true,
+    "InspectDistance": 0.8,
+    "InspectAngles": [
+      -110.0,
+      180.0,
+      0.0
+    ],
+    "InspectOffset": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "InspectScale": [
+      0.6,
+      0.6,
+      0.6
+    ],
+    "NormalModel": "",
+    "InspectModel": "",
+    "EquippedModelPrefab": "",
+    "ImplementationType": "",
+    "EquippingAudio": "",
+    "ToolType": "Hatchet",
+    "ToolKind": "Hatchet",
+    "DegradeOnUse": 2.0,
+    "Usage": "CraftOnly",
+    "SkillBonus": 0,
+    "CraftingTimeMultiplier": 0.0,
+    "DegradePerHourCrafting": 0.0,
+    "BreakDown": true,
+    "BreakDownTimeMultiplier": 0.33,
+    "ForceLocks": false,
+    "ForceLockAudio": "",
+    "IceFishingHole": true,
+    "IceFishingHoleDegradeOnUse": 2.5,
+    "IceFishingHoleMinutes": 15,
+    "IceFishingHoleAudio": "Play_IceBreakingChopping",
+    "CarcassHarvesting": false,
+    "MinutesPerKgMeat": 0,
+    "MinutesPerKgFrozenMeat": 0,
+    "MinutesPerHide": 0,
+    "MinutesPerGut": 0,
+    "DegradePerHourHarvesting": 0.0,
+    "StruggleBonus": false,
+    "DamageMultiplier": 0.0,
+    "FleeChanceMultiplier": 0.0,
+    "TapMultiplier": 0.0,
+    "CanPuncture": false,
+    "BleedoutMultiplier": 0.0
+  },
+  "ModSharpenableBehaviour": {
+    "Audio": "Play_Sharpening",
+    "MinutesMin": 20,
+    "MinutesMax": 8,
+    "ConditionMin": 2.0,
+    "ConditionMax": 5.0,
+    "Tools": [
+      "GEAR_SharpeningStone"
+    ]
+  },
+  "ModMillableBehaviour": {
+    "RepairDurationMinutes": 30,
+    "RepairRequiredGear": [
+      "GEAR_ScrapMetal"
+    ],
+    "RepairRequiredGearUnits": [
+      1
+    ],
+    "CanRestoreFromWornOut": true,
+    "RecoveryDurationMinutes": 90,
+    "RestoreRequiredGear": [
+      "GEAR_ScrapMetal",
+      "GEAR_Hardwood"
+    ],
+    "RestoreRequiredGearUnits": [
+      2,
+      1
+    ],
+    "Skill": "ToolRepair"
+  }
+}

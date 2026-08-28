@@ -1,0 +1,38 @@
+{
+  "Name": "Improvised Firearm Cleaning Kit",
+  "RequiredGear": [
+    {
+      "Item": "GEAR_LeatherDried",
+      "Count": 1,
+      "Units": "Count"
+    },
+    {
+      "Item": "GEAR_Cloth",
+      "Count": 2,
+      "Units": "Count"
+    },
+    {
+      "Item": "GEAR_ArrowShaft",
+      "Count": 1,
+      "Units": "Count"
+    }
+  ],
+  "RequiredPowder": [],
+  "RequiredLiquid": [
+    {
+      "Liquid": "LIQUID_Kerosene",
+      "VolumeInLitres": 0.5
+    }
+  ],
+  "RequiredTool": "",
+  "OptionalTools": [],
+  "RequiredCraftingLocation": "Workbench",
+  "RequiresLitFire": false,
+  "RequiresLight": true,
+  "CraftedResult": "GEAR_ImprovisedRifleCleaningKit",
+  "CraftedResultCount": 1,
+  "DurationMinutes": 30,
+  "CraftingAudio": "Play_CraftingGeneric",
+  "AppliedSkill": "None",
+  "ImprovedSkill": "None"
+}

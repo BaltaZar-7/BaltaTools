@@ -1,0 +1,35 @@
+{
+  "ModGenericComponent": {
+    "DisplayNameLocalizationId": "GAMEPLAY_ImprovisedSharpeningStone",
+    "DescriptionLocalizatonId": "GAMEPLAY_ImprovisedSharpeningStoneDescription",
+    "InventoryActionLocalizationId": "",
+    "WeightKG": 1.0,
+    "DaysToDecay": 0,
+    "MaxHP": 100.0,
+    "InitialCondition": "Perfect",
+    "InventoryCategory": "Tool",
+    "PickUpAudio": "Play_SndInvStoneSmall",
+    "PutBackAudio": "Play_SndInvStoneSmall",
+    "StowAudio": "Play_InventoryStow",
+    "WornOutAudio": "Play_SndInvKitSmallBreak1",
+    "InspectOnPickup": true,
+    "InspectDistance": 0.8,
+    "InspectAngles": [
+      -45.0,
+      0.0,
+      0.0
+    ],
+    "InspectOffset": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "InspectScale": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "NormalModel": "",
+    "InspectModel": ""
+  }
+}

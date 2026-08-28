@@ -1,0 +1,28 @@
+{
+  "Name": "Improvised Whetstone",
+  "RequiredGear": [
+    {
+      "Item": "GEAR_Stone",
+      "Count": 10,
+      "Units": "Count"
+    },
+    {
+      "Item": "GEAR_Rock",
+      "Count": 1,
+      "Units": "Count"
+    }
+  ],
+  "RequiredPowder": [],
+  "RequiredLiquid": [],
+  "RequiredTool": "",
+  "OptionalTools": [],
+  "RequiredCraftingLocation": "Workbench",
+  "RequiresLitFire": false,
+  "RequiresLight": true,
+  "CraftedResult": "GEAR_ImprovisedSharpeningStone",
+  "CraftedResultCount": 1,
+  "DurationMinutes": 30,
+  "CraftingAudio": "Play_RockCache",
+  "AppliedSkill": "None",
+  "ImprovedSkill": "None"
+}

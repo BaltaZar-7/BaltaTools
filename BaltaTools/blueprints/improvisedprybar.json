@@ -1,0 +1,23 @@
+{
+  "Name": "Improvised Prybar",
+  "RequiredGear": [
+    {
+      "Item": "GEAR_ScrapMetal",
+      "Count": 5,
+      "Units": "Count"
+    }
+  ],
+  "RequiredPowder": [],
+  "RequiredLiquid": [],
+  "RequiredTool": "GEAR_Hammer",
+  "OptionalTools": [],
+  "RequiredCraftingLocation": "Forge",
+  "RequiresLitFire": true,
+  "RequiresLight": true,
+  "CraftedResult": "GEAR_ImprovisedPrybar",
+  "CraftedResultCount": 1,
+  "DurationMinutes": 240,
+  "CraftingAudio": "Play_CraftingForge",
+  "AppliedSkill": "None",
+  "ImprovedSkill": "None"
+}
