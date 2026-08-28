@@ -9,6 +9,7 @@ Lose double durability and action takes x1.5 time compared to the manufactured o
 Slightly better than regular hatchet in struggles and breakdown.  
 Main benefit that it is lighter than the original hatchet.  
 Can opening, harvest saplings, struggle and carcass harvesting. (animations work too!)  
+Can be used as tool in blueprints where vanilla hatchet is accepted.  
 Can be found in the Trader pool above 400 trust.  
 <img width="709" height="845" alt="BaltaToolsHatchet" src="https://github.com/user-attachments/assets/e6b1c763-a0e8-490f-bdb4-041a5d9adba7" />
 ## Splitting Axe  
@@ -33,12 +34,21 @@ Download and install dependancy mods AND its dependancies: ModComponent, ModSett
 Download and place the dll file into your \Mods folder.  
 Download and place the ModComponent file into your \Mods folder.  
 ## Spoilers
+<details>
+  <summary>Spoiler warning</summary> 
+  
 GEAR_SplittingAxe - can be found in the Clearcut in Mystery Lake in a tree stump.  
 GEAR_SurvivalHatchet - obtainable via trader  
 GEAR_ImprovisedSharpeningStone - craftable  
 GEAR_ImprovisedRifleCleaningKit - craftable  
 GEAR_ImprovisedPrybar - craftable at the forge  
 GEAR_FeatherPlucker - found in the house in the Picnic area, Milton Park. Can be traded by the trader above 300 trust.  
+  
+  ```javascript
+  console.log("I'm a code block!");
+  ```
+  
+</details>
 # Thank you for downloading!
 Mod for The Long Dark game created by Hinterland Studios  
 Modtemplate by Digitalzombie  
