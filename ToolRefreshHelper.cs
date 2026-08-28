@@ -13,24 +13,19 @@ namespace BaltaTools
         private static void Postfix(ToolsList __instance)
         {
             DebugHelper.Log("[BaltaTools] ToolsList.OnToolIncrease() POSTFIX");
-
             ToolRefreshHelper.RefreshParentPanel(__instance);
         }
     }
-
 
     [HarmonyPatch(typeof(ToolsList),nameof(ToolsList.OnToolDecrease))]
     internal static class ToolsList_OnToolDecrease_Patch
     {
-        private static void Postfix(
-            ToolsList __instance)
+        private static void Postfix(ToolsList __instance)
         {
             DebugHelper.Log("[BaltaTools] ToolsList.OnToolDecrease() POSTFIX");
-
             ToolRefreshHelper.RefreshParentPanel(__instance);
         }
     }
-
 
     internal static class ToolRefreshHelper
     {
@@ -42,7 +37,6 @@ namespace BaltaTools
             if (toolsList == null)
             {
                 DebugHelper.Log("[BaltaTools] ToolsList = NULL");
-
                 return;
             }
 
@@ -51,7 +45,6 @@ namespace BaltaTools
             if (panel == null)
             {
                 DebugHelper.Log("[BaltaTools] Parent Panel_Inventory_Examine = NULL");
-
                 return;
             }
 
@@ -60,20 +53,15 @@ namespace BaltaTools
             DebugHelper.Log($"[BaltaTools] Tool switched to = " + $"{(selectedTool == null ? "NULL" : selectedTool.name)}");
 
 
-            bool cleanPanelActive =
-                panel.m_CleanPanel != null &&
-                panel.m_CleanPanel.activeInHierarchy;
+            bool cleanPanelActive = panel.m_CleanPanel != null && panel.m_CleanPanel.activeInHierarchy;
 
-            bool sharpenPanelActive =
-                panel.m_SharpenPanel != null &&
-                panel.m_SharpenPanel.activeInHierarchy;
+            bool sharpenPanelActive = panel.m_SharpenPanel != null && panel.m_SharpenPanel.activeInHierarchy;
 
             DebugHelper.Log($"[BaltaTools] CleanPanel active = " + $"{cleanPanelActive}, " + $"SharpenPanel active = " + $"{sharpenPanelActive}");
 
             if (cleanPanelActive)
             {
                 DebugHelper.Log("[BaltaTools] CLEAN PANEL detected.");
-
                 RefreshCleanLabels(panel);
             }
 
@@ -81,14 +69,10 @@ namespace BaltaTools
             if (sharpenPanelActive)
             {
                 DebugHelper.Log("[BaltaTools] SHARPEN PANEL detected.");
-
                 RefreshSharpenLabels(panel);
             }
         }
-
-
-        private static void RefreshCleanLabels(
-            Panel_Inventory_Examine panel)
+        private static void RefreshCleanLabels(Panel_Inventory_Examine panel)
         {
             if (_updateCleanLabels == null)
             {
@@ -98,7 +82,6 @@ namespace BaltaTools
             if (_updateCleanLabels == null)
             {
                 MelonLogger.Error("[BaltaTools] Could not find UpdateCleanLabels().");
-
                 return;
             }
 
@@ -110,8 +93,7 @@ namespace BaltaTools
         }
 
 
-        private static void RefreshSharpenLabels(
-            Panel_Inventory_Examine panel)
+        private static void RefreshSharpenLabels(Panel_Inventory_Examine panel)
         {
             if (_updateSharpenLabels == null)
             {
@@ -121,7 +103,6 @@ namespace BaltaTools
             if (_updateSharpenLabels == null)
             {
                 MelonLogger.Error("[BaltaTools] Could not find UpdateSharpenLabels().");
-
                 return;
             }
 

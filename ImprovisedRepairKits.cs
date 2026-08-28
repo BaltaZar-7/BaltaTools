@@ -25,12 +25,10 @@ namespace BaltaTools
             return Resolve("GEAR_ImprovisedRifleCleaningKit", ref _improvisedRifleCleaningKit, ref _loggedMissingRifleCleaningKit);
         }
 
-        /// <summary>
-        /// Végigmegy minden jelenleg betöltött Sharpenable és Cleanable komponensen,
-        /// és ha a "hivatalos" eszköz (fenőkő / puskatisztító készlet) szerepel a
-        /// választható listájukban, hozzáadja az improvizált változatot is —
-        /// közvetlenül a natív mezőbe írva.
-        /// </summary>
+        /// It iterates through all currently loaded Sharpenable and Cleanable components,
+        /// and if vanilla tools (whetstone / gun cleaning kit) appears in
+        /// their list of options, it adds the improvised version as well —
+        /// writing it directly into the native field.
         public static void EnsureInjected()
         {
             InjectSharpen();
@@ -58,14 +56,10 @@ namespace BaltaTools
                 bool hasImprovised = false;
                 int liveCount = 0;
 
-                // Első körben: számoljuk meg, hány ÉLŐ (nem megsemmisült) elem van,
-                // és nézzük meg, kell-e egyáltalán valamit módosítani.
+                // First, let's count how many LIVE (non-destroyed) elements there are, and see if anything needs to be modified at all.
                 foreach (ToolsItem tool in choices)
                 {
-                    if (tool == null) // ez true lesz halott Unity-objektumra is (== operator overload)
-                    {
-                        continue;
-                    }
+                    if (tool == null) continue;
 
                     liveCount++;
 
@@ -74,13 +68,13 @@ namespace BaltaTools
                         hasStone = true;
                     }
 
-                    if (improvised != null && tool == improvised)
+                    if (tool.gameObject.name == "GEAR_ImprovisedSharpeningStone")
                     {
                         hasImprovised = true;
                     }
                 }
 
-                bool needsRebuild = (liveCount != choices.Length); // volt halott elem
+                bool needsRebuild = (liveCount != choices.Length); // there was a dead ref
                 bool needsAppend = hasStone && improvised != null && !hasImprovised;
 
                 if (!needsRebuild && !needsAppend)
@@ -96,7 +90,7 @@ namespace BaltaTools
                 {
                     if (tool == null)
                     {
-                        continue; // halott referenciát kihagyjuk
+                        continue; // skip dead reference
                     }
                     newArray[writeIndex++] = tool;
                 }
@@ -114,10 +108,6 @@ namespace BaltaTools
         private static void InjectClean()
         {
             ToolsItem improvised = GetImprovisedRifleCleaningKit();
-            if (improvised == null)
-            {
-                return;
-            }
 
             Il2CppArrayBase<Cleanable> allCleanables = Resources.FindObjectsOfTypeAll<Cleanable>();
             foreach (Cleanable cleanable in allCleanables)
@@ -135,36 +125,54 @@ namespace BaltaTools
 
                 bool hasKit = false;
                 bool hasImprovised = false;
+                int liveCount = 0;
 
                 foreach (ToolsItem tool in choices)
                 {
-                    if (tool == null)
-                    {
-                        continue;
-                    }
+                    if (tool == null) continue;
+
+                    liveCount++;
 
                     if (tool.gameObject.name == "GEAR_RifleCleaningKit")
                     {
                         hasKit = true;
                     }
 
-                    if (tool == improvised)
+                    if (tool.gameObject.name == "GEAR_ImprovisedRifleCleaningKit")
                     {
                         hasImprovised = true;
                     }
                 }
 
-                if (hasKit && !hasImprovised)
+                bool needsRebuild = liveCount != choices.Length; // dead ref
+                bool needsAppend = hasKit && improvised != null && !hasImprovised;
+
+                if (!needsRebuild && !needsAppend)
                 {
-                    Il2CppReferenceArray<ToolsItem> newArray = new Il2CppReferenceArray<ToolsItem>(choices.Length + 1);
-                    for (int i = 0; i < choices.Length; i++)
-                    {
-                        newArray[i] = choices[i];
-                    }
-                    newArray[choices.Length] = improvised;
-                    cleanable.m_CleanToolChoices = newArray;
-                    DebugHelper.Log($"[BaltaTools] Cleaning kit hozzáadva: {cleanable.gameObject.name}");
+                    continue;
                 }
+
+                int newLength = liveCount + (needsAppend ? 1 : 0);
+                Il2CppReferenceArray<ToolsItem> newArray = new Il2CppReferenceArray<ToolsItem>(newLength);
+
+                int writeIndex = 0;
+                foreach (ToolsItem tool in choices)
+                {
+                    if (tool == null)
+                    {
+                        continue; // dead reference skipped
+                    }
+
+                    newArray[writeIndex++] = tool;
+                }
+
+                if (needsAppend)
+                {
+                    newArray[writeIndex] = improvised;
+                }
+
+                cleanable.m_CleanToolChoices = newArray;
+                DebugHelper.Log($"[BaltaTools] Clean tools frissítve ({cleanable.gameObject.name}): halott elemek eltávolítva={needsRebuild}, hozzáadva={needsAppend}");
             }
         }
         private static ToolsItem Resolve(string prefabName, ref ToolsItem cache, ref bool loggedMissing)
@@ -189,26 +197,16 @@ namespace BaltaTools
                 {
                     toolsItem = targetGameObject.AddComponent<ToolsItem>();
                     ConfigureAsTool(toolsItem);
-                    DebugHelper.Log($"[BaltaTools] {prefabName}: ToolsItem létrehozva.");
+                    DebugHelper.Log($"[BaltaTools] {prefabName}: ToolsItem created.");
                 }
                 gearItem.m_ToolsItem = toolsItem;
-
-                DegradeOnUse degradeOnUse = targetGameObject.GetComponent<DegradeOnUse>();
-                if (degradeOnUse == null)
-                {
-                    degradeOnUse = targetGameObject.AddComponent<DegradeOnUse>();
-                    degradeOnUse.m_DegradeHP = 10f;
-                }
-
-                gearItem.m_DegradeOnUse = degradeOnUse;
-
                 cache = toolsItem;
                 return cache;
             }
 
             if (!loggedMissing)
             {
-                MelonLogger.Warning($"[BaltaTools] {prefabName} még nem található (Resources.FindObjectsOfTypeAll).");
+                MelonLogger.Warning($"[BaltaTools] {prefabName} not found yet (Resources.FindObjectsOfTypeAll).");
                 loggedMissing = true;
             }
 
@@ -305,22 +303,52 @@ namespace BaltaTools
             }
         }
     }
-    /*[HarmonyPatch(typeof(GearItem), "DegradeOnUse")]
-    public static class GearItem_DegradeOnUse_Diag_Patch
+    [HarmonyPatch(typeof(GearItem), nameof(GearItem.Awake))]
+    internal static class GearItem_Awake_ImprovisedTools_Degrade_Patch
     {
-        static void Prefix(GearItem __instance, out float __state)
+        private static void Postfix(GearItem __instance)
         {
-            __state = __instance.CurrentHP;
-        }
-
-        static void Postfix(GearItem __instance, float __state)
-        {
-            if (__instance.gameObject.name != "GEAR_ImprovisedSharpeningStone" && __instance.gameObject.name != "GEAR_ImprovisedRifleCleaningKit")
+            if (__instance == null ||
+                __instance.gameObject == null)
             {
                 return;
             }
 
-            DebugHelper.Log($"[BaltaTools][diag] GearItem.DegradeOnUse() lefutott: {__instance.gameObject.name}, HP: {__state} -> {__instance.CurrentHP}");
+            string itemName = __instance.gameObject.name;
+
+            if (itemName != "GEAR_ImprovisedSharpeningStone" &&
+                itemName != "GEAR_ImprovisedRifleCleaningKit")
+            {
+                return;
+            }
+
+            ApplyDegradeOnUse(__instance);
         }
-    }*/
+
+        private static void ApplyDegradeOnUse(GearItem gearItem)
+        {
+            if (gearItem == null || gearItem.gameObject == null)
+            {
+                return;
+            }
+
+            DegradeOnUse degradeOnUse = gearItem.m_DegradeOnUse;
+
+            if (degradeOnUse == null)
+            {
+                degradeOnUse = gearItem.gameObject.GetComponent<DegradeOnUse>();
+            }
+
+            if (degradeOnUse == null)
+            {
+                degradeOnUse = gearItem.gameObject.AddComponent<DegradeOnUse>();
+
+                DebugHelper.Log("[BaltaTools] DegradeOnUse created for " + gearItem.gameObject.name + " InstanceID=" + gearItem.GetInstanceID());
+            }
+
+            degradeOnUse.m_DegradeHP = 10f;
+            gearItem.m_DegradeOnUse = degradeOnUse;
+            DebugHelper.Log("[BaltaTools] DegradeOnUse assigned to " + gearItem.gameObject.name + " InstanceID=" + gearItem.GetInstanceID() + " HP=" + degradeOnUse.m_DegradeHP);
+        }
+    }
 }

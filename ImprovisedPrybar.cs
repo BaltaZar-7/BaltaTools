@@ -10,60 +10,109 @@ namespace BaltaTools
     internal static class ImprovisedPrybarRegistry
     {
         private const string PrybarName = "GEAR_ImprovisedPrybar";
-        private const float IceFishingHPDecreaseToClear = 1.6f;
-        private const int IceFishingMinutesToClear = 40;
-        private static GameObject _representativeGameObject;
-        private static bool _loggedMissing;
+        private const float IceFishingHPDecreaseToClear = 2f;
+        private const int IceFishingMinutesToClear = 45;
+
+        private static GameObject _prybarGameObject;
 
         public static GameObject GetPrybarGameObject()
         {
-            if (_representativeGameObject != null)
+            if (_prybarGameObject != null)
             {
-                EnsurePrybarComponents(_representativeGameObject);
-
-                return _representativeGameObject;
+                return _prybarGameObject;
             }
 
-            Il2CppArrayBase<GearItem> allGearItems = Resources.FindObjectsOfTypeAll<GearItem>();
+            Il2CppArrayBase<GearItem>
+                allGearItems =
+                    Resources.FindObjectsOfTypeAll<GearItem>();
+
+            GameObject firstFound = null;
 
             foreach (GearItem gearItem in allGearItems)
             {
                 if (gearItem == null ||
-                    gearItem.gameObject == null ||
-                    gearItem.gameObject.name != PrybarName)
+                    gearItem.gameObject == null)
                 {
                     continue;
                 }
 
-                _representativeGameObject = gearItem.gameObject;
+                if (gearItem.gameObject.name != PrybarName)
+                {
+                    continue;
+                }
 
-                EnsurePrybarComponents(_representativeGameObject);
+                Initialize(gearItem);
 
-                return _representativeGameObject;
+                if (firstFound == null)
+                {
+                    firstFound =
+                        gearItem.gameObject;
+                }
             }
 
-            if (!_loggedMissing)
-            {
-                MelonLogger.Warning($"[BaltaTools] {PrybarName} még sehol nem található.");
+            _prybarGameObject =
+                firstFound;
 
-                _loggedMissing = true;
-            }
-
-            return null;
+            return _prybarGameObject;
         }
 
         public static GearItem GetPrybarGearItem()
         {
-            GameObject prybar = GetPrybarGameObject();
-
-            if (prybar == null)
-            {
-                return null;
-            }
-
-            return prybar.GetComponent<GearItem>();
+            return _prybarGameObject == null ? null : _prybarGameObject.GetComponent<GearItem>();
         }
 
+        public static void Initialize(GearItem gearItem)
+        {
+            if (gearItem == null || gearItem.gameObject == null) return;
+            if (gearItem.gameObject.name != PrybarName) return;
+
+            _prybarGameObject = gearItem.gameObject;
+            ApplyForceLockItem(gearItem);
+            ApplyIceFishingHoleClear(gearItem);
+            DebugHelper.Log("[BaltaTools] Improvised Prybar initialized via Awake. InstanceID=" + gearItem.GetInstanceID());
+        }
+
+        private static void ApplyForceLockItem(GearItem gearItem)
+        {
+            ForceLockItem forceLockItem = gearItem.m_ForceLockItem;
+            if (forceLockItem == null)
+            {
+                forceLockItem = gearItem.gameObject.GetComponent<ForceLockItem>();
+            }
+            if (forceLockItem == null)
+            {
+                forceLockItem = gearItem.gameObject.AddComponent<ForceLockItem>();
+                DebugHelper.Log("[BaltaTools] " + PrybarName + ": ForceLockItem component added.");
+            }
+
+            forceLockItem.m_ForceLockAudio = "PLAY_LOCKERPRYOPEN1";
+            forceLockItem.m_LocalizedProgressText = new LocalizedString() { m_LocalizationID = "GAMEPLAY_Forcing" };
+            gearItem.m_ForceLockItem = forceLockItem;
+        }
+
+        private static void ApplyIceFishingHoleClear(GearItem gearItem)
+        {
+            IceFishingHoleClearItem iceFishing = gearItem.m_IceFishingHoleClearItem;
+            if (iceFishing == null)
+            {
+                iceFishing = gearItem.gameObject.GetComponent<IceFishingHoleClearItem>();
+            }
+            if (iceFishing == null)
+            {
+                iceFishing = gearItem.gameObject.AddComponent<IceFishingHoleClearItem>();
+                DebugHelper.Log("[BaltaTools] " + PrybarName + ": IceFishingHoleClearItem created.");
+            }
+
+            iceFishing.m_BreakIceAudio = "Play_IceBreakingChopping";
+            iceFishing.m_HPDecreaseToClear = IceFishingHPDecreaseToClear;
+            iceFishing.m_NumGameMinutesToClear = IceFishingMinutesToClear;
+            gearItem.m_IceFishingHoleClearItem = iceFishing;
+        }
+
+        public static void ResetCache()
+        {
+            _prybarGameObject = null;
+        }
         public static void EnsurePrybarComponents(GameObject targetGameObject)
         {
             if (targetGameObject == null)
@@ -71,142 +120,77 @@ namespace BaltaTools
                 return;
             }
 
-            GearItem gearItem = targetGameObject.GetComponent<GearItem>();
+
+            GearItem gearItem =
+                targetGameObject.GetComponent<GearItem>();
 
             if (gearItem == null)
             {
                 return;
             }
 
-            ApplyForceLockItem(gearItem);
-            ApplyIceFishingHoleClear(gearItem);
-        } 
 
-        private static void ApplyForceLockItem(GearItem gearItem)
-        {
-            DebugHelper.Log($"[BaltaTools] ApplyForceLockItem() called for " + $"{gearItem.gameObject.name}");
+            ApplyForceLockItem(
+                gearItem);
 
-            ForceLockItem forceLockItem =
-                gearItem.m_ForceLockItem;
-
-            if (forceLockItem == null)
-            {
-                forceLockItem =
-                    gearItem.gameObject.GetComponent<ForceLockItem>();
-
-                DebugHelper.Log($"[BaltaTools] GetComponent<ForceLockItem>() = " + $"{(forceLockItem == null ? "NULL" : "FOUND")}");
-            }
-
-            if (forceLockItem == null)
-            {
-                forceLockItem = gearItem.gameObject.AddComponent<ForceLockItem>();
-
-                DebugHelper.Log($"[BaltaTools] {PrybarName}: " + "ForceLockItem component hozzáadva.");
-            }
-
-            forceLockItem.m_ForceLockAudio = "PLAY_LOCKERPRYOPEN1";
-
-            forceLockItem.m_LocalizedProgressText = new LocalizedString()
-                {
-                    m_LocalizationID = "GAMEPLAY_Forcing"
-                };
-
-            gearItem.m_ForceLockItem = forceLockItem;
-
-            DebugHelper.Log($"[BaltaTools] {PrybarName}: ForceLockItem beállítva. " + $"GearItem.m_ForceLockItem != null = " + $"{(gearItem.m_ForceLockItem != null)}");
+            ApplyIceFishingHoleClear(
+                gearItem);
         }
+    }
 
-        private static void ApplyIceFishingHoleClear(
-            GearItem gearItem)
+    [HarmonyPatch(typeof(GearItem), nameof(GearItem.Awake))]
+    internal static class GearItem_Awake_ImprovisedPrybar_Patch
+    {
+        private static void Postfix(GearItem __instance)
         {
-            IceFishingHoleClearItem iceFishingHoleClearItem = gearItem.m_IceFishingHoleClearItem;
-
-            if (iceFishingHoleClearItem == null)
-            {
-                iceFishingHoleClearItem = gearItem.gameObject.GetComponent<IceFishingHoleClearItem>();
-            }
-
-            if (iceFishingHoleClearItem == null)
-            {
-                iceFishingHoleClearItem = gearItem.gameObject.AddComponent<IceFishingHoleClearItem>();
-
-                DebugHelper.Log($"[BaltaTools] {PrybarName}: " + "IceFishingHoleClearItem létrehozva.");
-            }
-
-            iceFishingHoleClearItem.m_BreakIceAudio = "Play_IceBreakingChopping";
-
-            iceFishingHoleClearItem.m_HPDecreaseToClear = IceFishingHPDecreaseToClear;
-
-            iceFishingHoleClearItem.m_NumGameMinutesToClear = IceFishingMinutesToClear;
-
-            gearItem.m_IceFishingHoleClearItem = iceFishingHoleClearItem;
-        }
-        public static void ResetCache()
-        {
-            _representativeGameObject = null;
-            _loggedMissing = false;
+            ImprovisedPrybarRegistry.Initialize(__instance);
         }
     }
 
     [HarmonyPatch(typeof(Panel_IceFishingHoleClear), "InitializeFilteredUsableTools")]
-    public static class Panel_IceFishingHoleClear_AddPrybar_Patch
+    internal static class Panel_IceFishingHoleClear_AddPrybar_Patch
     {
-        static void Prefix(Panel_IceFishingHoleClear __instance)
+        private static void Prefix(Panel_IceFishingHoleClear __instance)
         {
             Il2CppSystem.Collections.Generic.List<GameObject> usableTools = __instance.m_UsableToolItems;
-            if (usableTools == null)
-            {
-                return;
-            }
+            if (usableTools == null) return;
 
             bool hasHatchetType = false;
             bool hasPrybar = false;
-
             foreach (GameObject go in usableTools)
             {
-                if (go == null)
-                {
-                    continue;
-                }
-
-                if (go.name == "GEAR_Hatchet")
-                {
-                    hasHatchetType = true;
-                }
-
-                if (go.name == "GEAR_ImprovisedPrybar")
-                {
-                    hasPrybar = true;
-                }
+                if (go == null) continue;
+                if (go.name == "GEAR_Hatchet") hasHatchetType = true;
+                if (go.name == "GEAR_ImprovisedPrybar") hasPrybar = true;
             }
 
-            if (!hasHatchetType || hasPrybar)
-            {
-                return;
-            }
+            if (!hasHatchetType || hasPrybar) return;
 
             GameObject prybarGo = ImprovisedPrybarRegistry.GetPrybarGameObject();
-            if (prybarGo != null)
-            {
-                usableTools.Add(prybarGo);
-            }
+            if (prybarGo != null) usableTools.Add(prybarGo);
         }
     }
+
     internal static class ImprovisedPrybarForceLock
     {
         private const string VanillaPrybarName = "GEAR_Prybar";
-        private const string ImprovisedPrybarName = "GEAR_ImprovisedPrybar";
 
         public static GearItem GetImprovisedPrybarFromInventory()
         {
-            ImprovisedPrybarRegistry.GetPrybarGameObject();
+            Inventory inventory = GameManager.GetInventoryComponent();
 
-            GearItem improvisedPrybar = GameManager.GetInventoryComponent().GetHighestConditionGearThatMatchesName("GEAR_ImprovisedPrybar");
-
-            if (improvisedPrybar != null)
+            if (inventory == null)
             {
-                ImprovisedPrybarRegistry.EnsurePrybarComponents(
-                    improvisedPrybar.gameObject);
+                return null;
+            }
+
+
+            GearItem improvisedPrybar = inventory.GetHighestConditionGearThatMatchesName("GEAR_ImprovisedPrybar");
+
+
+            if (improvisedPrybar != null && improvisedPrybar.gameObject != null)
+            {
+                ImprovisedPrybarRegistry.EnsurePrybarComponents(improvisedPrybar.gameObject);
             }
 
             return improvisedPrybar;
@@ -214,107 +198,47 @@ namespace BaltaTools
 
         public static bool IsPrybarLock(Lock lockInstance)
         {
-            if (lockInstance == null)
-            {
-                return false;
-            }
-
-            GearItem requiredTool =
-                lockInstance.m_GearPrefabToForceLock;
-
-            if (requiredTool == null)
-            {
-                return false;
-            }
-
-            return requiredTool.gameObject != null &&
-                   requiredTool.gameObject.name == VanillaPrybarName;
+            if (lockInstance == null) return false;
+            GearItem requiredTool = lockInstance.m_GearPrefabToForceLock;
+            if (requiredTool == null || requiredTool.gameObject == null) return false;
+            return requiredTool.gameObject.name == VanillaPrybarName;
         }
     }
 
 
-    [HarmonyPatch(typeof(Lock),nameof(Lock.PlayerHasRequiredToolToUnlock))]
+    [HarmonyPatch(typeof(Lock), nameof(Lock.PlayerHasRequiredToolToUnlock))]
     internal static class Lock_PlayerHasRequiredToolToUnlock_Patch
     {
         private static void Postfix(Lock __instance, ref bool __result)
         {
-            if (__result)
-            {
-                return;
-            }
-
-            if (!ImprovisedPrybarForceLock.IsPrybarLock(__instance))
-            {
-                return;
-            }
-
+            if (__result || !ImprovisedPrybarForceLock.IsPrybarLock(__instance)) return;
             GearItem improvisedPrybar = ImprovisedPrybarForceLock.GetImprovisedPrybarFromInventory();
-
-            if (improvisedPrybar == null)
-            {
-                return;
-            }
-
+            if (improvisedPrybar == null) return;
             __result = true;
-
-            DebugHelper.Log($"[BaltaTools] Improvised prybar accepted for lock: " + $"{__instance.gameObject.name}");
         }
     }
 
-
-    [HarmonyPatch(typeof(Lock),nameof(Lock.CanForceLock))]
+    [HarmonyPatch(typeof(Lock), nameof(Lock.CanForceLock))]
     internal static class Lock_CanForceLock_Patch
     {
-        private static void Postfix(
-            Lock __instance,
-            ref bool __result)
+        private static void Postfix(Lock __instance, ref bool __result)
         {
-            if (__result)
-            {
-                return;
-            }
-
-            if (!ImprovisedPrybarForceLock.IsPrybarLock(__instance))
-            {
-                return;
-            }
-
+            if (__result || !ImprovisedPrybarForceLock.IsPrybarLock(__instance)) return;
             GearItem improvisedPrybar = ImprovisedPrybarForceLock.GetImprovisedPrybarFromInventory();
-
-            if (improvisedPrybar == null)
-            {
-                return;
-            }
-
+            if (improvisedPrybar == null) return;
             __result = true;
-
-            DebugHelper.Log($"[BaltaTools] CanForceLock overridden for: " + $"{__instance.gameObject.name}");
         }
     }
 
-
-    [HarmonyPatch(typeof(Lock),nameof(Lock.GetGearItemToForceLock))]
+    [HarmonyPatch(typeof(Lock), nameof(Lock.GetGearItemToForceLock))]
     internal static class Lock_GetGearItemToForceLock_Patch
     {
-        private static void Postfix(
-            Lock __instance,
-            ref GearItem __result)
+        private static void Postfix(Lock __instance, ref GearItem __result)
         {
-            if (!ImprovisedPrybarForceLock.IsPrybarLock(__instance))
-            {
-                return;
-            }
-
+            if (!ImprovisedPrybarForceLock.IsPrybarLock(__instance)) return;
             GearItem improvisedPrybar = ImprovisedPrybarForceLock.GetImprovisedPrybarFromInventory();
-
-            if (improvisedPrybar == null)
-            {
-                return;
-            }
-
+            if (improvisedPrybar == null) return;
             __result = improvisedPrybar;
-
-            DebugHelper.Log($"[BaltaTools] ForceLock tool replaced with: " + $"{improvisedPrybar.gameObject.name}");
         }
     }
 }
