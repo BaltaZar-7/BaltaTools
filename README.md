@@ -10,14 +10,14 @@ Slightly better than regular hatchet in struggles and breakdown.
 Main benefit that it is lighter than the original hatchet.  
 Can opening, harvest saplings, struggle and carcass harvesting. (animations work too!)  
 Can be used as tool in blueprints where vanilla hatchet is accepted.  
-Can be found in the Trader pool above 400 trust.  
+Can be only found in the Trader pool above 400 trust.  
 <img width="709" height="845" alt="BaltaToolsHatchet" src="https://github.com/user-attachments/assets/e6b1c763-a0e8-490f-bdb4-041a5d9adba7" />
 ## Splitting Axe  
 Excellent for chopping wood.  Excellent for breaking ice.  Really heavy to hoard around.  
 Can harvest saplings.  
 Cannot use in struggles nor carcass harvesting. Mainly because of the animations (model too big), but it is also balanced this way imo. May change on feedback.  
 Cannot use in crafting blueprints.  
-Special item, can be found in Mystery Lake.  
+Special item, can be only found in Mystery Lake.  
 <img width="772" height="847" alt="BaltaToolsAxe" src="https://github.com/user-attachments/assets/8b4c9e88-94d0-4823-8e6d-d83b1f6b8363" />
 ## Improvised Prybar  
 A forged variant of the prybar. Slightly heavier, same functionality (except breakdown, may add it later).  
@@ -38,7 +38,7 @@ Download and place the ModComponent file into your \Mods folder.
   <summary>Spoiler warning</summary> 
   
 GEAR_SplittingAxe - can be found in the Clearcut in Mystery Lake in a tree stump.  
-GEAR_SurvivalHatchet - obtainable via trader  
+GEAR_SurvivalHatchet - obtainable via trader above 400 trust  
 GEAR_ImprovisedSharpeningStone - craftable  
 GEAR_ImprovisedRifleCleaningKit - craftable  
 GEAR_ImprovisedPrybar - craftable at the forge  
