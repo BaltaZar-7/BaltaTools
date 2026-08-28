@@ -7,6 +7,7 @@ using UnityEngine;
 
 namespace BaltaTools
 {
+    // This file is needed, because there is only one option for sharpening, cleaning in vanilla, so we need to refresh the durations of the activity when changing tool options
     [HarmonyPatch(typeof(ToolsList),nameof(ToolsList.OnToolIncrease))]
     internal static class ToolsList_OnToolIncrease_Patch
     {

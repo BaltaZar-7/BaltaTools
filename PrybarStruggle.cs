@@ -41,7 +41,6 @@ namespace BaltaTools
             if (table == null || table.m_Prybar == null)
             {
                 MelonLogger.Warning("[BaltaTools] No active " + "StruggleMeshTable/m_Prybar reference.");
-
                 return;
             }
 
@@ -58,7 +57,6 @@ namespace BaltaTools
                 if (improvisedMesh == null)
                 {
                     MelonLogger.Warning("[BaltaTools] FPH_ImprovisedPrybarMesh " + "not loaded yet. Vanilla mesh stays.");
-
                     return;
                 }
 
@@ -91,7 +89,6 @@ namespace BaltaTools
                     : null;
 
             _cachedVanillaLook = true;
-
             DebugHelper.Log($"[BaltaTools] Vanilla Prybar mesh cached: " + $"{(_vanillaMesh == null ? "NULL" : _vanillaMesh.name)}");
         }
 
@@ -121,7 +118,6 @@ namespace BaltaTools
             }
 
             GameObject targetGameObject = gearItem.gameObject;
-
             StruggleBonus struggleBonus = gearItem.m_StruggleBonus;
 
             if (struggleBonus == null)
@@ -132,7 +128,6 @@ namespace BaltaTools
             if (struggleBonus == null)
             {
                 struggleBonus = targetGameObject.AddComponent<StruggleBonus>();
-
                 DebugHelper.Log($"[BaltaTools] {ImprovisedPrybarName}: " + "StruggleBonus created.");
             }
 
@@ -157,7 +152,6 @@ namespace BaltaTools
             }
 
             GearItem improvisedPrybar = inventory.GetHighestConditionGearThatMatchesName(ImprovisedPrybarName);
-
             if (improvisedPrybar != null)
             {
                 EnsureStruggleBonus(improvisedPrybar);
@@ -203,7 +197,6 @@ namespace BaltaTools
 
             bool improvised = selectedGear.gameObject.name == "GEAR_ImprovisedPrybar";
             DebugHelper.Log($"[BaltaTools] SelectGridItem → {selectedGear.gameObject.name}, improvised={improvised}");
-
             ImprovisedPrybarStruggle.SetUseImprovisedMesh(improvised);
         }
     }

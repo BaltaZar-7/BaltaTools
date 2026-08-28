@@ -177,8 +177,7 @@ namespace BaltaTools
 
         // Can Opening
 
-        private static void
-            ApplyCanOpeningItem(GearItem survivalHatchet)
+        private static void ApplyCanOpeningItem(GearItem survivalHatchet)
         {
             if (survivalHatchet == null || survivalHatchet.gameObject == null)
             {
@@ -198,17 +197,11 @@ namespace BaltaTools
 
                 DebugHelper.Log("[BaltaTools] Survival Hatchet: " + "CanOpeningItem created.");
             }
+            canOpening.m_CanOpeningAudio = "Play_EatingSmashCan";
+            canOpening.m_CanOpeningLengthSeconds = 6f;
+            canOpening.m_Type = CanOpeningItem.CanOpeningType.Hatchet;
 
-
-            // TODO:
-            // Ezeket a vanilla Hatchet dumpjából állítsuk be.
-            //
-            // canOpening.m_Type = ...;
-            // canOpening.m_CanOpeningAudio = "...";
-            // canOpening.m_CanOpeningLengthSeconds = ...;
-
-
-            survivalHatchet.m_CanOpeningItem = canOpening;
+            survivalHatchet.m_CanOpeningItem = canOpening;        
         }
 
         public static void ResetCache()
@@ -225,7 +218,6 @@ namespace BaltaTools
             {
                 return existing;
             }
-
             bool hasRequired = false;
             bool hasNew = false;
 
@@ -252,9 +244,7 @@ namespace BaltaTools
                 return existing;
             }
 
-            Il2CppReferenceArray<GameObject> newArray = new Il2CppReferenceArray<GameObject>(
-                    existing.Length + 1);
-
+            Il2CppReferenceArray<GameObject> newArray = new Il2CppReferenceArray<GameObject>(existing.Length + 1);
             for (int i = 0;
                  i < existing.Length;
                  i++)
@@ -263,7 +253,6 @@ namespace BaltaTools
             }
 
             newArray[existing.Length] = toAdd;
-
             return newArray;
         }
     }

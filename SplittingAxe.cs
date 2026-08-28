@@ -68,7 +68,6 @@ namespace BaltaTools
 
             //ApplyBreakDownItem(gearItem);
             //ApplyIceFishingHoleClear(gearItem);
-
             DebugHelper.Log("[BaltaTools] Splitting Axe initialized via Awake. " + "InstanceID=" + gearItem.GetInstanceID());
         }
 
@@ -144,7 +143,6 @@ namespace BaltaTools
             }
 
             bool hasRequired = false;
-
             bool hasNew = false;
 
             foreach (GameObject go in existing)
@@ -180,7 +178,6 @@ namespace BaltaTools
             }
 
             newArray[existing.Length] = toAdd;
-
             return newArray;
         }
     }

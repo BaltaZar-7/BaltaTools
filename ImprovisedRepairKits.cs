@@ -49,7 +49,6 @@ namespace BaltaTools
                 if (toolsItem == null)
                 {
                     toolsItem = targetGameObject.AddComponent<ToolsItem>();
-
                     DebugHelper.Log("[BaltaTools] " + prefabName + ": ToolsItem created.");
                 }
 
@@ -58,7 +57,6 @@ namespace BaltaTools
                 gearItem.m_ToolsItem = toolsItem;
 
                 cache = toolsItem;
-
                 DebugHelper.Log("[BaltaTools] " + prefabName + ": resolved. InstanceID=" + gearItem.GetInstanceID()
                 );
                 return cache;
@@ -102,7 +100,6 @@ namespace BaltaTools
             {
                 _improvisedRifleCleaningKitSample = toolsItem;
             }
-
             DebugHelper.Log("[BaltaTools] " + itemName + ": ToolsItem configured. InstanceID=" + gearItem.GetInstanceID() + " TimeModifier=" + toolsItem.m_CraftingAndRepairTimeModifier);
         }
 
@@ -166,12 +163,10 @@ namespace BaltaTools
                     if (tool == null) continue;
                     newArray[writeIndex++] = tool;
                 }
-
                 if (needsAppend)
                 {
                     newArray[writeIndex] = improvised;
                 }
-
                 sharpenable.m_SharpenToolChoices = newArray;
                 DebugHelper.Log("[BaltaTools] Sharpen tools refreshed (" + sharpenable.gameObject.name + "): rebuilt=" + needsRebuild + ", appended=" + needsAppend);
             }

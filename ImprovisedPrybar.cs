@@ -22,16 +22,13 @@ namespace BaltaTools
                 return _prybarGameObject;
             }
 
-            Il2CppArrayBase<GearItem>
-                allGearItems =
-                    Resources.FindObjectsOfTypeAll<GearItem>();
+            Il2CppArrayBase<GearItem>allGearItems = Resources.FindObjectsOfTypeAll<GearItem>();
 
             GameObject firstFound = null;
 
             foreach (GearItem gearItem in allGearItems)
             {
-                if (gearItem == null ||
-                    gearItem.gameObject == null)
+                if (gearItem == null || gearItem.gameObject == null)
                 {
                     continue;
                 }
@@ -45,13 +42,11 @@ namespace BaltaTools
 
                 if (firstFound == null)
                 {
-                    firstFound =
-                        gearItem.gameObject;
+                    firstFound = gearItem.gameObject;
                 }
             }
 
-            _prybarGameObject =
-                firstFound;
+            _prybarGameObject = firstFound;
 
             return _prybarGameObject;
         }
@@ -120,21 +115,15 @@ namespace BaltaTools
                 return;
             }
 
-
-            GearItem gearItem =
-                targetGameObject.GetComponent<GearItem>();
+            GearItem gearItem = targetGameObject.GetComponent<GearItem>();
 
             if (gearItem == null)
             {
                 return;
             }
 
-
-            ApplyForceLockItem(
-                gearItem);
-
-            ApplyIceFishingHoleClear(
-                gearItem);
+            ApplyForceLockItem(gearItem);
+            ApplyIceFishingHoleClear(gearItem);
         }
     }
 
@@ -184,9 +173,7 @@ namespace BaltaTools
                 return null;
             }
 
-
             GearItem improvisedPrybar = inventory.GetHighestConditionGearThatMatchesName("GEAR_ImprovisedPrybar");
-
 
             if (improvisedPrybar != null && improvisedPrybar.gameObject != null)
             {
