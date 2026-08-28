@@ -30,7 +30,7 @@ Multiplies harvest time by 0.65.
 Can be found one in Mountain Town, and can be traded by the trader above trust 300.  
 <img width="725" height="838" alt="BaltaToolsPlucker" src="https://github.com/user-attachments/assets/19d85e55-2c2a-4c5f-833b-e9e78a6702c5" />
 # Installation
-Download and install dependancy mods AND its dependancies: ModComponent, ModSettings, Modders' Gear Toolbox, ExpandedTradingFramework
+Download and install dependancy mods AND its dependancies: ModComponent, ModSettings, Modders' Gear Toolbox, ExpandedTradingFramework  
 Download and place the dll file into your \Mods folder.  
 Download and place the ModComponent file into your \Mods folder.  
 ## Spoilers
