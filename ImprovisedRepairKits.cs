@@ -15,7 +15,6 @@ namespace BaltaTools
 
         private static ToolsItem _improvisedSharpeningStoneSample;
         private static ToolsItem _improvisedRifleCleaningKitSample;
-
         public static ToolsItem GetImprovisedSharpeningStone()
         {
             return Resolve(ImprovisedSharpeningStoneName,ref _improvisedSharpeningStoneSample);

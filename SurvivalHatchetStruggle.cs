@@ -214,7 +214,7 @@ namespace BaltaTools
             if (!listItems.Contains(survivalHatchet))
             {
                 listItems.Add(survivalHatchet);
-                MelonLogger.Msg("[BaltaTools] Survival Hatchet added to Struggle WeaponPicker list.");
+                DebugHelper.Log("[BaltaTools] Survival Hatchet added to Struggle WeaponPicker list.");
             }
         }
     }

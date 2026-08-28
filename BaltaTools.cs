@@ -50,12 +50,9 @@ namespace BaltaTools
                     ImprovisedPrybarFPHMesh = handle.Result;
 
                     MelonLogger.Msg($"[BaltaTools] FPH_ImprovisedPrybarMesh loaded successfully. " + $"Vertices={ImprovisedPrybarFPHMesh.vertexCount}, " + $"Name={ImprovisedPrybarFPHMesh.name}");
-
                     yield break;
                 }
-
                 DebugHelper.Log("[BaltaTools] FPH_ImprovisedPrybarMesh " + "load failed. Retrying in 1 second.");
-
                 yield return new WaitForSeconds(1f);
             }
         }
@@ -79,12 +76,9 @@ namespace BaltaTools
                     SurvivalHatchetFPHMesh = handle.Result;
 
                     MelonLogger.Msg($"[BaltaTools] FPH_SurvivalHatchetMesh loaded successfully. " + $"Vertices={SurvivalHatchetFPHMesh.vertexCount}, " + $"Name={SurvivalHatchetFPHMesh.name}");
-
                     yield break;
                 }
-
                 DebugHelper.Log("[BaltaTools] SurvivalHatchet " + "load failed. Retrying in 1 second.");
-
                 yield return new WaitForSeconds(1f);
             }
         }
@@ -108,12 +102,9 @@ namespace BaltaTools
                     SurvivalHatchetCINEMesh = handle.Result;
 
                     MelonLogger.Msg($"[BaltaTools] Cine_Harvest_SurvivalHatchetMesh loaded successfully. " + $"Vertices={SurvivalHatchetCINEMesh.vertexCount}, " + $"Name={SurvivalHatchetCINEMesh.name}");
-
                     yield break;
                 }
-
                 DebugHelper.Log("[BaltaTools] SurvivalHatchetCINE " + "load failed. Retrying in 1 second.");
-
                 yield return new WaitForSeconds(1f);
             }
         }
@@ -140,9 +131,7 @@ namespace BaltaTools
 
                     yield break;
                 }
-
                 DebugHelper.Log("[BaltaTools] SurvivalHatchetMaterial " + "load failed. Retrying in 1 second.");
-
                 yield return new WaitForSeconds(1f);
             }
         }
@@ -154,9 +143,7 @@ namespace BaltaTools
                 {
                     yield break;
                 }
-
                 DebugHelper.Log("[BaltaTools] Waiting for " + "Cine_Harvest_SurvivalHatchetBloodyMaterial Addressable...");
-
                 AsyncOperationHandle<Material> handle = Addressables.LoadAssetAsync<Material>("SurvivalHatchetBloodMat");
 
                 yield return handle;
@@ -166,12 +153,9 @@ namespace BaltaTools
                     SurvivalHatchetMatBloody = handle.Result;
 
                     MelonLogger.Msg($"[BaltaTools] Cine_Harvest_SurvivalHatchetBloodyMaterial loaded successfully. " + $"Name={SurvivalHatchetMatBloody.name}");
-
                     yield break;
                 }
-
                 DebugHelper.Log("[BaltaTools] SurvivalHatchetBloodyMaterial " + "load failed. Retrying in 1 second.");
-
                 yield return new WaitForSeconds(1f);
             }
         }
@@ -182,7 +166,6 @@ namespace BaltaTools
             //SplittingAxeRegistry.ResetCache();
             ImprovisedPrybarRegistry.ResetCache();
             SurvivalHatchetRegistry.ResetCache();
-
             DebugHelper.Log($"[BaltaTools] Scene unloaded ({sceneName}), registry caches deleted.");
         }
     }
