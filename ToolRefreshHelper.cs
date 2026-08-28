@@ -31,7 +31,7 @@ namespace BaltaTools
     {
         private static MethodInfo _updateCleanLabels;
         private static MethodInfo _updateSharpenLabels;
-
+        
         public static void RefreshParentPanel(ToolsList toolsList)
         {
             if (toolsList == null)
@@ -51,7 +51,6 @@ namespace BaltaTools
             GameObject selectedTool = toolsList.GetSelectedTool();
 
             DebugHelper.Log($"[BaltaTools] Tool switched to = " + $"{(selectedTool == null ? "NULL" : selectedTool.name)}");
-
 
             bool cleanPanelActive = panel.m_CleanPanel != null && panel.m_CleanPanel.activeInHierarchy;
 
