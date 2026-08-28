@@ -42,13 +42,9 @@ GEAR_SurvivalHatchet - obtainable via trader
 GEAR_ImprovisedSharpeningStone - craftable  
 GEAR_ImprovisedRifleCleaningKit - craftable  
 GEAR_ImprovisedPrybar - craftable at the forge  
-GEAR_FeatherPlucker - found in the house in the Picnic area, Milton Park. Can be traded by the trader above 300 trust.  
-  
-  ```javascript
-  console.log("I'm a code block!");
-  ```
-  
+GEAR_FeatherPlucker - found in the house in the Picnic area, Milton Park. Can be traded by the trader above 300 trust.    
 </details>
+
 # Thank you for downloading!
 Mod for The Long Dark game created by Hinterland Studios  
 Modtemplate by Digitalzombie  
