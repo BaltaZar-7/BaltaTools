@@ -11,7 +11,7 @@ namespace BaltaTools
     {
         private const string SplittingAxeName = "GEAR_SplittingAxe";
 
-        private const float BreakDownTimeModifier = 0.25f;
+        private const float BreakDownTimeModifier = 0.33f;
         private const float IceFishingHPDecreaseToClear = 2.5f;
         private const int IceFishingMinutesToClear = 15;
         private static GameObject _splittingAxeGameObject;

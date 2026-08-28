@@ -14,7 +14,7 @@ namespace BaltaTools
 
         private const float BreakDownTimeModifier = 0.45f;
         private const float IceFishingHPDecreaseToClear = 2.5f;
-        private const int IceFishingMinutesToClear = 15;
+        private const int IceFishingMinutesToClear = 20;
         private const string IceFishingBreakIceAudio = "Play_IceBreakingChopping";
 
         private static GameObject _survivalHatchetGameObject;

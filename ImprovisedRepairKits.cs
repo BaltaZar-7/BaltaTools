@@ -215,7 +215,7 @@ namespace BaltaTools
         private static void ConfigureAsTool(ToolsItem toolsItem)
         {
             toolsItem.m_CraftingAndRepairSkillModifier = 10f;
-            toolsItem.m_CraftingAndRepairTimeModifier = 2f;
+            toolsItem.m_CraftingAndRepairTimeModifier = 1.5f;
             toolsItem.m_CanOnlyCraftAndRepairClothes = false;
             toolsItem.m_ToolType = ToolsItem.ToolType.RepairOnly;
             toolsItem.m_CuttingToolType = ToolsItem.CuttingToolType.None;
