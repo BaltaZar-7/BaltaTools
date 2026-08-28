@@ -195,10 +195,10 @@ namespace BaltaTools
 
                 if (toolsItem == null)
                 {
-                    toolsItem = targetGameObject.AddComponent<ToolsItem>();
-                    ConfigureAsTool(toolsItem);
+                    toolsItem = targetGameObject.AddComponent<ToolsItem>();                 
                     DebugHelper.Log($"[BaltaTools] {prefabName}: ToolsItem created.");
                 }
+                ConfigureAsTool(toolsItem);
                 gearItem.m_ToolsItem = toolsItem;
                 cache = toolsItem;
                 return cache;
