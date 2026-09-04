@@ -2,7 +2,7 @@
   "GAMEPLAY_SplittingAxe": {
     "English": "Splitting Axe",
     "German": "",
-    "Russian": "",
+    "Russian": "Топор-колун",
     "French (France)": "",
     "Japanese": "",
     "Korean": "",
@@ -23,7 +23,7 @@
   "GAMEPLAY_SplittingAxeDescription": {
     "English": "This is a two handed heavy Axe for woodchopping. Too heavy to use in struggles, however, your enemy may thinks twice before attacking.",
     "German": "",
-    "Russian": "",
+    "Russian": "Тяжелый двуручный топор. Хорошо подходит для рубки различной древесины. Им нельзя отбиваться, но враги, увидев такой топор, должны сильно подумать перед атакой.",
     "French (France)": "",
     "Japanese": "",
     "Korean": "",
@@ -44,7 +44,7 @@
   "GAMEPLAY_ImprovisedPrybar": {
     "English": "Improvised Prybar",
     "German": "",
-    "Russian": "",
+    "Russian": "Самодельный гвоздодёр",
     "French (France)": "",
     "Japanese": "",
     "Korean": "",
@@ -65,7 +65,7 @@
   "GAMEPLAY_ImprovisedPrybarDescription": {
     "English": "An improvised forged prybar. Useful for opening locked containers.",
     "German": "",
-    "Russian": "",
+    "Russian": "Самодельный выкованный гвоздодер. Подойдет чтобы открыть закрытые контейнеры.",
     "French (France)": "",
     "Japanese": "",
     "Korean": "",
@@ -86,7 +86,7 @@
   "GAMEPLAY_ImprovisedRifleCleaningKit": {
     "English": "Improvised Firearm Cleaning Kit",
     "German": "",
-    "Russian": "",
+    "Russian": "Самодельный набор для чистки оружия",
     "French (France)": "",
     "Japanese": "",
     "Korean": "",
@@ -107,7 +107,7 @@
   "GAMEPLAY_ImprovisedRifleCleaningKitDescription": {
     "English": "Improvised tool kit used to keep a Rifle or Revolver in good working order.",
     "German": "",
-    "Russian": "",
+    "Russian": "Этот набор поможет вашей винтовке или револьверу остаться в хорошем состоянии.",
     "French (France)": "",
     "Japanese": "",
     "Korean": "",
@@ -128,7 +128,7 @@
   "GAMEPLAY_ImprovisedSharpeningStone": {
     "English": "Improvised Whetstone",
     "German": "",
-    "Russian": "",
+    "Russian": "Самодельный точильный камень",
     "French (France)": "",
     "Japanese": "",
     "Korean": "",
@@ -149,7 +149,7 @@
   "GAMEPLAY_ImprovisedSharpeningStoneDescription": {
     "English": "An improvised whetstone used to sharpen blades.",
     "German": "",
-    "Russian": "",
+    "Russian": "Самодельный точильный камень используется для заточки лезвия. Менее прочный.",
     "French (France)": "",
     "Japanese": "",
     "Korean": "",
@@ -170,7 +170,7 @@
   "GAMEPLAY_FeatherPlucker": {
     "English": "Feather Plucker",
     "German": "",
-    "Russian": "",
+    "Russian": "Щипач перьев",
     "French (France)": "",
     "Japanese": "",
     "Korean": "",
@@ -191,7 +191,7 @@
   "GAMEPLAY_FeatherPluckerDescription": {
     "English": "Reduces the harvest time of Ptarmigan.",
     "German": "",
-    "Russian": "",
+    "Russian": "Наличие щипача ускоряет сбор пуха куропатки.",
     "French (France)": "",
     "Japanese": "",
     "Korean": "",
@@ -212,7 +212,7 @@
   "GAMEPLAY_SurvivalHatchet": {
     "English": "Survival Hatchet",
     "German": "",
-    "Russian": "",
+    "Russian": "Топор выживальщика",
     "French (France)": "",
     "Japanese": "",
     "Korean": "",
@@ -233,7 +233,7 @@
   "GAMEPLAY_SurvivalHatchetDescription": {
     "English": "A small one-handed survival hatchet. Good for splitting wood. Can be used to hack meat in a pinch. Lightweight version.",
     "German": "",
-    "Russian": "",
+    "Russian": "Одноручный топор выживальщика. Используется для рубки дров, сбора мяса и может помочь при атаке хищьника. Облегченный вариант.",
     "French (France)": "",
     "Japanese": "",
     "Korean": "",
