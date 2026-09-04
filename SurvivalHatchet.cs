@@ -101,7 +101,7 @@ namespace BaltaTools
 
             if (toolsItem == null)
             {
-                MelonLogger.Warning("[BaltaTools] Survival Hatchet: " + "ToolsItem not found.");
+                //MelonLogger.Warning("[BaltaTools] Survival Hatchet: " + "ToolsItem not found.");
                 return;
             }
 
