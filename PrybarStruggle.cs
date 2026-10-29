@@ -143,7 +143,7 @@ namespace BaltaTools
 
         public static GearItem
             GetImprovisedPrybarFromInventory()
-        {
+            {
             Inventory inventory = GameManager.GetInventoryComponent();
 
             if (inventory == null)

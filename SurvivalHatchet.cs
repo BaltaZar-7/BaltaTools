@@ -280,7 +280,8 @@ namespace BaltaTools
     }
 
 
-    [HarmonyPatch(typeof(Harvestable),"InitializeRequiredTools")]
+    [HarmonyPatch(typeof(Harvestable), "InitializeRequiredTools")]
+    [HarmonyPriority(Priority.Last)]
     internal static class Harvestable_AddSurvivalHatchet_Patch
     {
         private static void Prefix(Harvestable __instance)

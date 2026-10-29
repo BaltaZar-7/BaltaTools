@@ -317,5 +317,13 @@ namespace BaltaTools
             degradeOnUse.m_DegradeHP = 10f;
             gearItem.m_DegradeOnUse = degradeOnUse;
         }
+        [HarmonyPatch(typeof(Panel_Inventory_Examine), nameof(Panel_Inventory_Examine.RefreshMainWindow))]
+        internal static class Panel_Inventory_Examine_RefreshMainWindow_InjectTools_Patch
+        {
+            private static void Prefix()
+            {
+                ImprovisedToolsRegistry.EnsureInjected();
+            }
+        }
     }
 }

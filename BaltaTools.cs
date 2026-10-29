@@ -25,6 +25,7 @@ namespace BaltaTools
 
             MelonLogger.Msg("[BaltaTools] BaltaTools initialized");
             DebugHelper.Init();
+            //PlantHarvestTweakerCompat.TryPatch(this.HarmonyInstance);
 
             CustomTradeDefinition[] enabledTrades = BaltaToolsTradeList.GetEnabledTrades();
             int registered = CustomTradeRegistry.RegisterExternalTrades(enabledTrades);

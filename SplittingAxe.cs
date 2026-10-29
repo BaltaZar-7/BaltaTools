@@ -201,7 +201,8 @@ namespace BaltaTools
             __instance.m_UsableTools = GameObjectArrayInjectorAxe.AppendIfMissing(__instance.m_UsableTools,"GEAR_Hatchet",axe);
         }
     }
-    [HarmonyPatch(typeof(Harvestable),"InitializeRequiredTools")]
+    [HarmonyPatch(typeof(Harvestable), "InitializeRequiredTools")]
+    [HarmonyPriority(Priority.Last)]
     internal static class Harvestable_AddSplittingAxe_Patch
     {
         private static void Prefix(Harvestable __instance)
